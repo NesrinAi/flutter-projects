@@ -1,0 +1,81 @@
+brief explaination: 
+we need the user to enter their (name, age, email) & save it under (user). 
+there is a save page where you can access all the saved users. 
+in this page you have cards each stroe a user 
+each card have delete button and update 
+
+covered concepts: 
+local storage - remeber we are storing obj not list. 
+
+my thinking flow: 
+1- stop panicing! 
+2- first it of all we need to think of the structure we are building, mainly 2 pages, a module = user
+3- take the first page and build it. 
+4- the first page needs 3 text field one for each info: name, age, email.
+it also needs a save buttton and a save icon at the app bar
+5- now that the first page is over i will work on the logic.. baby steps hmm
+6- for unkown reason i am stuck so i am taking a break
+7- after saving we want to take everything into another page, but wait things are in text controller 
+how can we save them
+
+things i had to search for:
+ honesty level -brutal- 
+ 1: adding an icon at the app bar i totally forgot the action part also had to search 
+ for the search icon name.
+ 2: had to search for controller part. we have more than one text field == more than one controller
+ 3: now this is a lot i had to ask gigi to walk me throgh every step after i created the users class 
+ here is the code 
+  onPressed: () {
+                  // String name = controller1.text;
+                  // String email = controller2.text;
+                  // int age = controller3.text as int;
+                  Users users = Users(
+                    name: controller1.text,
+                    age: controller2.text as int,
+                    email: controller3.text,
+                  );
+                }, 
+4- now for the json part, i had to take a deep breath and try to get the logic first 
+
+new things i have learn - my own words - 
+the purpos of toJson is to allow the shared preference to undersatnd what the hill we are talking about
+so: 
+Obj --> Map (using tojson method: which is simply a method that returns a map) --> jsonEncode (back to string so shared prefernce understand)
+
+Gigi's words: 
+You have this: Users user = Users(...)
+
+You call: user.toJson() → gives you a Map
+
+Then: jsonEncode(user.toJson()) → gives you a String
+
+Then: prefs.setString('saved_user', thatString)
+
+now the reveresed operation: 
+if we want to get it back to obj we will just do the opposite so:
+String -> get a map using (json decode) -> obj using from json which is simply a method that takes a map and covert it to obj.
+
+summary - gigi:
+
+| When saving                | When loading                 |
+| -------------------------- | ---------------------------- |
+| `user.toJson()` → Map      | `prefs.getString()`          |
+| `jsonEncode(map)` → String | `jsonDecode(string)` → Map   |
+| `prefs.setString()`        | Users.fromJson(map) → User   |
+/////////////////////////////////////////////////////////////
+
+
+second practice: 
+brif explaination: 
+store a list insted of one obj - setStringList 
+create a card for each obj // u click it 
+remove card. 
+
+
+when Flutter is building your screen, it does 3 main things:
+
+ initState() → runs before the UI shows up (best place to load data)
+
+ build() → shows the UI
+
+ setState() → updates the UI if something changes later

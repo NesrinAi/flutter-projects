@@ -1,0 +1,29 @@
+hey nono this is my explaination to u <3
+the sections are:
+- firebase Initialization 
+- log in view - bloc provider
+- UI - bloc concumear 
+- state management 
+- logic - cubit & firebase auth
+
+lets break the first section together: 
+void main() async {
+    widgetsFlutterBinding.ensureInitialized();
+    await FireBase.initializeApp(option :  DefaultFirebaseOptions.currentPlatform);
+    runApp(const MyApp())
+}
+
+we are doing three main things here: 
+1- make sure all Flutter services ready before doing anything
+(like firebase) 
+
+2- connect the app  to fire base services
+the current platform gives firebase the right config for android pr ios
+
+3- run the app 
+
+so in short: 
+
+Wait for Flutter to get ready 
+Connect to Firebase 
+Then start the UI 
